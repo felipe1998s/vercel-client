@@ -1,0 +1,15 @@
+.mapContainer{
+    display: flex;
+    flex-direction: column;
+    position:initial;
+    width: 100vw;
+    height: 77vh;
+    border-radius: 10px;
+    padding-top:20vh;
+    background-color:violet;
+}
+
+.pre{
+    font-size: 10px;
+    padding: auto;
+}

@@ -1,4 +1,4 @@
-import { Home, Landing, NotFound } from './views'
+import { Home, Landing, MapView, NotFound } from './views'
 import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import { NavBar } from './components';
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route index element={<Landing/>}></Route>
         <Route path='/home' element={<Home/>}></Route>
+        <Route path='/map' element={<MapView/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
     </div>
