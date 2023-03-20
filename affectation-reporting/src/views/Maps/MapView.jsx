@@ -5,6 +5,7 @@ import './react-leaflet.css';
 import 'leaflet/dist/leaflet.css';
 import { useDispatch, useSelector } from "react-redux";
 import { getAffecteds } from "../../redux/Actions/actions";
+import { MarkerIcon } from "./Markert-Icon";
 
 
 export const MapView = () => {
@@ -42,7 +43,7 @@ export const MapView = () => {
                 {affectedsData.map((currentLocation,index)=>(
                     // console.log(currentLocation.location, index)
                 <div key={index} onClick={()=>handleClick(currentLocation.name)}>
-                    <Marker position={currentLocation.location.split(",")}>
+                    <Marker position={currentLocation.location.split(",")} icon={MarkerIcon}>
                         <Popup>
                             <pre className={style.pre}>
                                 Latitude: {currentLocation.location.split(",")[0]}, 
