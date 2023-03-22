@@ -1,6 +1,6 @@
 import style from "./About.module.css";
-import image from "./about_image.png";
-import arbol from "./arbol_problemas.png";
+import image from "../../assets/about_image.jpeg";
+import arbol from "../../assets/arbol_problemas.jpeg";
 export const About = () => {
     return(
         <div className={style.container}>
