@@ -6,7 +6,8 @@ import App from './App'
 import './index.css'
 import store from './redux/Store/store';
 import axios from 'axios';
-axios.defaults.baseURL="http://localhost:3000";
+// axios.defaults.baseURL="http://localhost:3000";
+axios.defaults.baseURL="https://firebase-api-ja2l.onrender.com";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>

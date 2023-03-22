@@ -9,5 +9,5 @@ export const MarkerIcon = L.icon({
   shadowUrl: iconShadow,
   iconSize:[25,41],
   iconAnchor:[12.5,41],
-  popupAnchor:[0,-41]
+  popupAnchor:[1,-32]
 });
