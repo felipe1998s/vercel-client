@@ -56,7 +56,7 @@ export const MapView = () => {
                 <Polyline pathOptions={{color:"green"}} positions={polyline}/>
                 <Polygon pathOptions={{color:"yellow"}} positions={triangle}/>
                 <Polygon pathOptions={{color:"red"}} positions={triagleBig}/>
-                <Marker position={state.currentLocation[0]}>
+                <Marker position={state.currentLocation[0]} icon={MarkerIcon}>
                     <Popup className={style.pre}>
                         <pre>
                             Lat: {state.currentLocation[0][0].substring(0,7)}, 
