@@ -18,3 +18,13 @@ export const getAffecteds =()=>{
     }
 }
 
+export const deleteAffected = (id) =>{
+    return async(dispatch)=>{
+        try{
+            const {data} = await axios.delete(`/delete-affected/${id}`)
+            console.log(data, "DELETE_ACTION");
+        }catch(error){
+            console.error(error);
+        }        
+    }    
+}

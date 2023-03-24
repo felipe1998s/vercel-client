@@ -7,7 +7,7 @@ import style from "./Home.module.css";
 export const Home = () => {
     const dispatch = useDispatch();
     const affecteds = useSelector((state)=>state.affecteds);
-    console.log(affecteds, "HOME");
+
     useEffect(()=>{
         dispatch(getAffecteds());
     },[dispatch]);

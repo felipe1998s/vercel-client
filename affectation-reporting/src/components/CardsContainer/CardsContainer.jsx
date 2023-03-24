@@ -1,13 +1,23 @@
 import { Card } from "../Card/Card";
 import style from "./CardsContainer.module.css";
+import { useDispatch } from "react-redux";
+import { deleteAffected, getAffecteds } from "../../redux/Actions/actions";
+import { useEffect } from "react";
 export const CardsContainer = (props) => {
     const { affecteds } = props;
     const keys = Object.keys(affecteds);
     const values = Object.values(affecteds);
-    console.log(values, "Cards Container");
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(getAffecteds());
+    },[dispatch]);
+
 
     const handleDelete = (index) => {
         console.log(keys[index]);
+        dispatch(deleteAffected(keys[index]));
+        dispatch(getAffecteds());
     }
 
     return(
