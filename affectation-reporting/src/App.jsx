@@ -1,4 +1,4 @@
-import { About, Home, Landing, MapView, NotFound } from './views'
+import { About, Home, Landing, MapView, NotFound, Stast } from './views'
 import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import { NavBar } from './components';
@@ -15,6 +15,7 @@ function App() {
         <Route index element={<Landing/>}></Route>
         <Route path='/home' element={<Home/>}></Route>
         <Route path='about-us' element={<About/>}></Route>
+        <Route path='stats' element={<Stast/>}></Route>
         <Route path='/map' element={<MapView/>}></Route>
         <Route path='*' element={<NotFound/>}></Route>
       </Routes>
