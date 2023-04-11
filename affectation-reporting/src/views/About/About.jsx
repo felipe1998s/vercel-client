@@ -92,9 +92,9 @@ export const About = () => {
                 </p>
             </div>
             <hr />
-            <a href="" download="app-debug.apk"> Download Here Final Doc </a>
+            {/* <a href="" download="app-debug.apk"> Download Here Final Doc </a>  */}
             <hr />
-            <a href="" download="app-debug.apk"> Download Here APK </a>
+            {/* <a href="" download="app-debug.apk"> Download Here APK </a> */}
         </div>
     )
 }
