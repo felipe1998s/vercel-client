@@ -22,7 +22,7 @@ export const PieChart=({data,cantidad,handles})=>{
               <input type="checkbox" value={"Pie"} onClick={handleSelect}/><label>Gráfico circular</label></div>
           </div>
           <div>
-            <button onClick={()=>handleCantidad(-1)}> - </button> Quantity: {cantidad} <button onClick={()=>handleCantidad(1)}> + </button>
+            <button onClick={()=>handleCantidad(-1)}> - </button> Cantidad: {cantidad} <button onClick={()=>handleCantidad(1)}> + </button>
           </div>
           <button onClick={()=>handleDataOne("Affecteds by age","Years")}>Afectados por edad</button>
           <button onClick={()=>handleDataTwo("Affecteds by gender","")}>Afectados por genero</button>

@@ -34,7 +34,7 @@ export const CardsContainer = () => {
                 <FileExcelGenerator dataObject={values} listName="reportes" />
             </div>
             <hr/>
-            <Card id="Id" name="Nombre" age="Age" location="Location"/>
+            <Card id="Id" name="Nombre" age="Edad" location="Ubicación"/>
             {!values.length==0 ? <>{values.map((value, index)=>(
                 <div key={keys[index]}>
                     <Card
