@@ -34,7 +34,7 @@ export const FilterByGender = (props) => {
                 <option value="All">All</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
-                <option value="O">Other</option>
+                <option value="Otro">Other</option>
             </select>
 
         </div>
