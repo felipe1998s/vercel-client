@@ -18,7 +18,7 @@ export const FilterByGender = (props) => {
             dataFilter = data.filter((obj)=>obj.gender===value);
         }else if(value==="F"){
             dataFilter = data.filter((obj)=>obj.gender===value);
-        }else if(value==="O"){
+        }else if(value==="Otro"){
             dataFilter = data.filter((obj)=> obj.gender===value);
         }else{
             dispatch(getAffecteds());
