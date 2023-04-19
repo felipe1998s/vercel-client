@@ -14,9 +14,22 @@ export const StatsComponent = (props) => {
         storeBar:[]
     });
     console.log(affecteds,"Hola");
+
     const handleDataOne = (subName,nameSlice) => {
+        const rangoEdades = ["0-17","18-25","25-49","50-65","65-100"];
+        let objByAge; 
+        rangoEdades.forEach((rango)=>{
+            const edades = rango.split("-");
+            objByAge = subName==="Affecteds by age"? affecteds.map((affected)=>{
+                if(edades[0]>affected.age && edades[1]<affected.age){
+                    return {value:1, name:rango}
+                }  
+            }):[];
+
+            objByAge = [...objByAge];
+        })
         //Affecteds by age
-        let objByAge = subName==="Affecteds by age"? affecteds.map((affected)=>{return {value:1, name:`${affected.age} years`}}):[];
+        //let objByAge = subName==="Affecteds by age"? affecteds.map((affected)=>{return {value:1, name:`${affected.age} years`}}):[];
         objByAge = objByAge.reduce((arrGroup, current) => {
             let thatItem = arrGroup.find(item => item.name == current.name)
             if (thatItem == undefined) arrGroup = [...arrGroup, {...current}]
@@ -46,7 +59,6 @@ export const StatsComponent = (props) => {
         const array = [...objByGender]
         setCantidad(array.length);
         setData({...data,store:array,subtext:subName,nameSlice:nameSlice});
-
     }
 
     const handleDataThree = (subName, nameSlice) => {
@@ -90,6 +102,38 @@ export const StatsComponent = (props) => {
         setData({...data,store:array,subtext:subName,nameSlice:nameSlice});
     }
 
+    const handleEventReport = (subName,nameSlice) =>{
+        let objByEvent = subName==="Event reports"? affecteds.map((affected)=>{return {value:1, name:affected.event}}):[];
+        objByEvent = objByEvent.reduce((arrGroup, current) => {
+            let thatItem = arrGroup.find(item => item.name == current.name)
+            if (thatItem == undefined) arrGroup = [...arrGroup, {...current}]
+            else {
+                thatItem.value += current.value
+            }
+            return arrGroup
+        }, []);
+        //
+        const array = [...objByEvent]
+        setCantidad(array.length);
+        setData({...data,store:array,subtext:subName,nameSlice:nameSlice});
+    }
+
+    const handleEfects = (subName,nameSlice) => {
+        let objByEffect = subName==="Effects"? affecteds.map((affected)=>{return {value:1, name:affected.efect}}):[];
+        objByEffect = objByEffect.reduce((arrGroup, current) => {
+            let thatItem = arrGroup.find(item => item.name == current.name)
+            if (thatItem == undefined) arrGroup = [...arrGroup, {...current}]
+            else {
+                thatItem.value += current.value
+            }
+            return arrGroup
+        }, []);
+        //
+        const array = [...objByEffect]
+        setCantidad(array.length);
+        setData({...data,store:array,subtext:subName,nameSlice:nameSlice});
+    }
+
     const handleOrderData = () => {
         if(data.order==="DESC"){
             const obj = data.store.sort((a,b)=>a.value-b.value);
@@ -107,7 +151,7 @@ export const StatsComponent = (props) => {
 
     return(
         <div className={style.statsContainer}>
-            {level&&level===100?<PieChart data={data} cantidad={cantidad} handles={{handleCantidad,handleDataOne,handleDataTwo,handleDataThree,handleDataFour,handleOrderData}} />:<></>}
+            {level&&level===100?<PieChart data={data} cantidad={cantidad} handles={{handleCantidad,handleDataOne,handleDataTwo,handleDataThree,handleDataFour,handleOrderData,handleEventReport,handleEfects}} />:<></>}
         </div>
     )
 }

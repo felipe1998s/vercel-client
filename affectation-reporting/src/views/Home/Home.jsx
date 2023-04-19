@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CardsContainer } from "../../components/CardsContainer/CardsContainer";
-import { getAffecteds } from "../../redux/Actions/actions";
+import { getAffecteds, getAffectedsByEvents } from "../../redux/Actions/actions";
 import Loading from "../Loading/Loading";
 import style from "./Home.module.css";
 
@@ -11,6 +11,7 @@ export const Home = () => {
     const data = Object.values(affecteds)
     useEffect(()=>{
         dispatch(getAffecteds());
+        dispatch(getAffectedsByEvents());
     },[dispatch]);
     return (
         <div>

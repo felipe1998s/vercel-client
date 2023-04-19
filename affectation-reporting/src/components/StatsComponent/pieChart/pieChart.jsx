@@ -2,7 +2,7 @@ import style from "../pieChart/pieChart.module.css";
 import ReactEcharts from "echarts-for-react";
 import { useState } from "react";
 export const PieChart=({data,cantidad,handles})=>{
-    const {handleCantidad,handleDataOne,handleDataTwo,handleDataThree,handleDataFour,handleOrderData}=handles;
+    const {handleCantidad,handleDataOne,handleDataTwo,handleDataThree,handleDataFour,handleOrderData,handleEventReport,handleEfects}=handles;
     const[type,setType]=useState([]);
 
     console.log(data);
@@ -24,10 +24,12 @@ export const PieChart=({data,cantidad,handles})=>{
           <div>
             <button onClick={()=>handleCantidad(-1)}> - </button> Cantidad: {cantidad} <button onClick={()=>handleCantidad(1)}> + </button>
           </div>
-          <button onClick={()=>handleDataOne("Affecteds by age","Years")}>Afectados por edad</button>
+          {/* <button onClick={()=>handleDataOne("Affecteds by age","Years")}>Afectados por edad</button> */}
           <button onClick={()=>handleDataTwo("Affecteds by gender","")}>Afectados por genero</button>
           <button onClick={()=>handleDataThree("Affecteds by rh", "rh Factor")}>Afectados por Rh</button>
-          <button onClick={()=>handleDataFour("Affecteds by distance", "meters")}>Afectados por Distancia</button>
+          {/* <button onClick={()=>handleDataFour("Affecteds by distance", "meters")}>Afectados por Distancia</button> */}
+          <button onClick={()=>handleEventReport("Event reports", "reports")}>Eventos Reportados</button>
+          <button onClick={()=>handleEfects("Effects","reports")}>Efectos Secundarios</button>
           <button onClick={handleOrderData}>Order</button>
         </div>}
         <div className={style.global}>
