@@ -24,18 +24,17 @@ export const SortByAge = (props) => {
             dispatch(getAffecteds())
             dataFilter=dataFilter;
         }
-        console.log(dataFilter,"hola");
         dispatch(sortByAge(dataFilter));
     }
 
     return(
         <div className={style.container}>
             <FaSort/>
-            <span>Sort by age: </span>
+            <span>Ordenamiento por edad: </span>
             <select className={style.select} onChange={handleChange} name="" id="">
                 <option value="default">Default</option>
-                <option value="minAge">Min Age</option>
-                <option value="maxAge">Max Age</option>
+                <option value="minAge">Edad minima</option>
+                <option value="maxAge">Edad maxima</option>
             </select>
         </div>
     )

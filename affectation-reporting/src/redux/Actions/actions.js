@@ -9,7 +9,6 @@ export const getAffecteds =()=>{
     return async (dispatch)=>{
         try {
             const {data} = await axios.get("/");
-            console.log(data, "ACTIONS");
             return dispatch({
                 type:GET_AFFECTEDS,
                 payload:data
@@ -25,7 +24,6 @@ export const getAffectedsByEvents = () => {
     return async (dispatch)=>{
         try {
             const {data} = await axios.get("/");
-            console.log(data, "ACTIONS");
             return dispatch({
                 type:GET_AFFECTEDS_BY_EVENTS,
                 payload:data
@@ -41,7 +39,6 @@ export const deleteAffected = (id) =>{
     return async(dispatch)=>{
         try{
             const {data} = await axios.delete(`/delete-affected/${id}`)
-            console.log(data, "DELETE_ACTION");
         }catch(error){
             console.error(error);
         }        

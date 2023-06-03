@@ -5,7 +5,6 @@ import { useState } from "react";
 export const Landing = () => {
     const text = leer();
     const [string,setString]=useState(text);
-    console.log(string);
     
     
 

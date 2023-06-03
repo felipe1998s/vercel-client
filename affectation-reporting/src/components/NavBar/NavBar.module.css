@@ -24,3 +24,10 @@
     flex: 8;
 }
   
+.bgWhite {
+    background-color: aliceblue;
+    padding: 2px 4px;
+    border: 1px solid white;
+    border-radius:4px;
+    color: black;
+}

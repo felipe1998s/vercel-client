@@ -13,7 +13,6 @@ export const StatsComponent = (props) => {
         store:[],
         storeBar:[]
     });
-    console.log(affecteds,"Hola");
 
     const handleDataOne = (subName,nameSlice) => {
         const rangoEdades = ["0-17","18-25","25-49","50-65","65-100"];

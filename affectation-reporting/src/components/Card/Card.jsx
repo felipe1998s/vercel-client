@@ -1,4 +1,5 @@
 import style from "./Card.module.css";
+import { MdDelete } from "react-icons/md";
 export const Card = (props) => {
     const { id , name, age, location , handle } = props;
     const nameSplit = name.split(" ");
@@ -9,7 +10,7 @@ export const Card = (props) => {
             <h1>{`${nameSplit[0]} ${nameSplit[2]?nameSplit[2]:""}`}</h1>
             <h1>{age}</h1>
             {id!=="Id"?<h1>{locationSplit[0].substring(0,4) + "," + locationSplit[1].substring(0,5)}</h1>:<h1>{location}</h1>}
-            {id!=="Id"? <div><button onClick={()=>handle(id)}>ELIMINAR</button></div>:<h1></h1>}
+            {id!=="Id"?<h1 className={style.delete}><MdDelete onClick={()=>handle(id)}/></h1>:<h1></h1>}
         </div>
     )
 }

@@ -29,12 +29,12 @@ export const FilterByGender = (props) => {
     return(
         <div className={style.filterByGender}>
             <FaFilter/>
-            <span>Filter By Gender: </span>
+            <span>Filtro por genero: </span>
             <select name="" id="" onChange={handleChange} className={style.select}>
-                <option value="All">All</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-                <option value="Otro">Other</option>
+                <option value="All">Todos</option>
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+                <option value="Otro">Otros</option>
             </select>
 
         </div>

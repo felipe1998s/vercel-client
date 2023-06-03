@@ -50,12 +50,12 @@ export const About = () => {
             <div className={style.image_events}>
                 <img src={arbol} alt="Arbol de problema"/>
             </div>
-            <div>
+            <div className={style.objEsp}>
                 <h1>OBJETIVO GENERAL</h1>
                 <p>Desarrollar un Sistema de reporte de afectaciones en situaciones de emergencia catastrófica, 
                     como soporte a organismos de rescate ante la desaparición de los mecanismos normales de comunicación.</p>
-                <hr />
             </div>
+            <hr />
             <div className={style.objEsp}>
                 <h1>OBJETIVOS ESPECÍFICOS</h1>
                 <h2>1</h2>
@@ -87,8 +87,7 @@ export const About = () => {
                 <hr />
                 <h2>4</h2>
                 <p>
-                    Desarrollar un servicio que permita trasmitir información de afectaciones por medio de dispositivos móviles hasta llegar a un 
-                    dispositivo con conexión a internet o red celular.
+                Validar el funcionamiento de todo el sistema.
                 </p>
             </div>
             <hr />
