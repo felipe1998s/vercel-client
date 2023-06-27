@@ -2,6 +2,7 @@ import style from "./About.module.css";
 import image from "../../assets/about_image.jpeg";
 import arbol from "../../assets/arbol_problemas.jpeg";
 import { Link } from "react-router-dom";
+import { Footer } from "../../components";
 export const About = () => {
 
     const ObjUrls = { 
@@ -22,6 +23,7 @@ export const About = () => {
 
 
     return(
+        <div>
         <div className={style.container}>
             <div>
                 <h1>SANTIAGO DE CALI RESILIENTE</h1>
@@ -90,10 +92,10 @@ export const About = () => {
                 Validar el funcionamiento de todo el sistema.
                 </p>
             </div>
-            <hr />
             {/* <a href="" download="app-debug.apk"> Download Here Final Doc </a>  */}
-            <hr />
             {/* <a href="" download="app-debug.apk"> Download Here APK </a> */}
+        </div>
+        <Footer/>
         </div>
     )
 }
