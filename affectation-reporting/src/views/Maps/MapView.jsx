@@ -19,11 +19,11 @@ export const MapView = () => {
     const triagleBig = polyline.splice(0,polyline.length);
     let latitudMedia = affectedsData.length>0 && (affectedsData.map((obj)=>Number(obj.location.split(",")[0])).reduce((a,b)=>a+b))/affectedsData.length;
     let longitudMedia =affectedsData.length>0 && (affectedsData.map((obj)=>Number(obj.location.split(",")[1])).reduce((a,b)=>a+b))/affectedsData.length;
-    let zoneA = groups.A.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
-    let zoneB = groups.B.map((groups)=>groups.location.split(",")).sort((a,b)=> b[1]-a[1]);
-    let zoneC = groups.C.map((groups)=>groups.location.split(",")).sort((a,b)=> b[1]-a[1]);
-    let zoneD = groups.D.map((groups)=>groups.location.split(",")).sort((a,b)=> b[1]-a[1]);
-    let zoneE = groups.E.map((groups)=>groups.location.split(",")).sort((a,b)=> b[1]-a[1]);
+    let zoneA = groups.A?.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
+    let zoneB = groups.B?.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
+    let zoneC = groups.C?.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
+    let zoneD = groups.D?.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
+    let zoneE = groups.E?.map((group)=>group.location.split(",")).sort((a,b)=> b[1]-a[1]);
     const [state, setState]=useState({
         currentLocation:[[ "3.4293462", "-76.4692499" ]],
         zoom:12,
@@ -56,129 +56,131 @@ export const MapView = () => {
     }
 
     return(
-        <div className={style.mapContainer} onClick={funcionInit}>
-            <MapContainer center={state.currentLocation[0]} zoom={12} scrollWheelZoom={true}>
-                <TileLayer
-                    url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
-                    attribution={`© <a href="https://osm.org/copyright">OpenStreetMap</a> contributors`}
-                />
-                <LayersControl position="topright">
-                    <LayersControl.Overlay name="Mi ubicación   ">
-                        <Marker position={state.currentLocation[0]} icon={MarkerIcon}>
-                            <Popup className={style.pre}>
-                                <pre>
-                                    Lat: {state.currentLocation[0][0].substring(0,7)}, 
-                                    Long: {state.currentLocation[0][1].substring(0,7)},
-                                    name:{"Your ubication"}
-                                </pre>
-                            </Popup>
-                        </Marker>
-                    </LayersControl.Overlay>
-                  
-                    <LayersControl.Overlay name="radio de 2km">
-                        <Circle center={state.currentLocation[0]} pathOptions={{color:"blue"}} radius={2000}/>
-                    </LayersControl.Overlay>
+        <div>
+            { affectedsData?.length ? <div className={style.mapContainer} onClick={funcionInit}>
+                <MapContainer center={state.currentLocation[0]} zoom={12} scrollWheelZoom={true}>
+                    <TileLayer
+                        url={"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                        attribution={`© <a href="https://osm.org/copyright">OpenStreetMap</a> contributors`}
+                    />
+                    <LayersControl position="topright">
+                        <LayersControl.Overlay name="Mi ubicación   ">
+                            <Marker position={state.currentLocation[0]} icon={MarkerIcon}>
+                                <Popup className={style.pre}>
+                                    <pre>
+                                        Lat: {state.currentLocation[0][0].substring(0,7)}, 
+                                        Long: {state.currentLocation[0][1].substring(0,7)},
+                                        name:{"Your ubication"}
+                                    </pre>
+                                </Popup>
+                            </Marker>
+                        </LayersControl.Overlay>
+                        
+                        <LayersControl.Overlay name="radio de 2km">
+                            <Circle center={state.currentLocation[0]} pathOptions={{color:"blue"}} radius={2000}/>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="Afectados">
-                        <LayerGroup>
-                        {affectedsData.map((currentLocation,index)=>(
-                            // console.log(currentLocation.location, index)
-                            <div key={index}>
-                                <Marker position={currentLocation.location.split(",")} icon={MarkerIcon}>
-                                    <Popup className={style.pre}>
-                                        <pre>
-                                            Latitude: {currentLocation.location.split(",")[0]}, 
-                                            Longitude: {currentLocation.location.split(",")[1]},
-                                            name: {currentLocation.name}
-                                        </pre> 
-                                    </Popup>
-                                </Marker>
-                            </div>
-                        ))}
-                        </LayerGroup>
-                    </LayersControl.Overlay>
+                        <LayersControl.Overlay name="Afectados">
+                            <LayerGroup>
+                            {affectedsData.map((currentLocation,index)=>(
+                                // console.log(currentLocation.location, index)
+                                <div key={index}>
+                                    <Marker position={currentLocation.location.split(",")} icon={MarkerIcon}>
+                                        <Popup className={style.pre}>
+                                            <pre>
+                                                Latitude: {currentLocation.location.split(",")[0]}, 
+                                                Longitude: {currentLocation.location.split(",")[1]},
+                                                name: {currentLocation.name}
+                                            </pre> 
+                                        </Popup>
+                                    </Marker>
+                                </div>
+                            ))}
+                            </LayerGroup>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="Zona afectada">
-                        {/* <Polygon pathOptions={{color:"red"}} positions={triagleBig}/> */}
-                        <FeatureGroup>
-                        {
-                            triagleBig?.map((point) => (
-                                <Circle center={point} pathOptions={{color:"red"}} radius={30}/>
-                            ))
-                        }
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
-
-                    <LayersControl.Overlay name="A - Zona afectada por incendio">
-                        <FeatureGroup pathOptions={{color:"orangered"}}>
-                            <Popup> <FaFireAlt/> {`${zoneD.length} personas afectadas por incendio`}</Popup>
-                            {/* <Polygon positions={zoneA}></Polygon> */}
+                        <LayersControl.Overlay name="Zona afectada">
+                            {/* <Polygon pathOptions={{color:"red"}} positions={triagleBig}/> */}
+                            <FeatureGroup>
                             {
-                            zoneA?.map((point) => (
-                                <Circle center={point} pathOptions={{color:"orangered"}} radius={30}/>
-                            ))
-                            }   
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
-
-                    <LayersControl.Overlay name="B - Zona afectada por daños estructurales">
-                        <FeatureGroup pathOptions={{color:"gray"}}>
-                            <Popup><FaBuilding/> {`${zoneB.length} personas afectadas por daños estructurales`}</Popup>  
-                            {/* <Polygon positions={zoneB}></Polygon> */}
-                            {
-                                zoneB?.map((point) => (
-                                    <Circle center={point} pathOptions={{color:"gray"}} radius={30}/>
+                                triagleBig?.map((point,index) => (
+                                    <Circle key={index} center={point} pathOptions={{color:"red"}} radius={30}/>
                                 ))
                             }
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="C - Zona afectada por interrupcion de servicios">
-                        <FeatureGroup pathOptions={{color:"blue"}}>
-                            <Popup><FaInfoCircle/> {`${zoneC.length} personas afectadas por interrupcion de servicios`}</Popup>
-                            {/* <Polygon positions={zoneC}></Polygon> */}
-                            {
-                            zoneC?.map((point) => (
-                                <Circle center={point} pathOptions={{color:"blue"}} radius={30}/>
-                            ))
-                            } 
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
+                        <LayersControl.Overlay name="A - Zona afectada por incendio">
+                            <FeatureGroup pathOptions={{color:"orangered"}}>
+                                <Popup> <FaFireAlt/> {`${zoneD?.length} personas afectadas por incendio`}</Popup>
+                                {/* <Polygon positions={zoneA}></Polygon> */}
+                                {
+                                zoneA?.map((point,index) => (
+                                    <Circle key={index} center={point} pathOptions={{color:"orangered"}} radius={30}/>
+                                ))
+                                }   
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="D - Zona afectada por derrumbe en la via">
-                        <FeatureGroup pathOptions={{color:"darkred"}}>
-                            <Popup><FaRoad/> {`${zoneD.length} personas afectadas por derrumbe vial`}</Popup>
-                            {/* <Polygon positions={zoneD}></Polygon> */}
-                            {
-                            zoneD?.map((point) => (
-                                <Circle center={point} pathOptions={{color:"darkred"}} radius={30}/>
-                            ))
-                            } 
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
+                        <LayersControl.Overlay name="B - Zona afectada por daños estructurales">
+                            <FeatureGroup pathOptions={{color:"gray"}}>
+                                <Popup><FaBuilding/> {`${zoneB?.length} personas afectadas por daños estructurales`}</Popup>  
+                                {/* <Polygon positions={zoneB}></Polygon> */}
+                                {
+                                    zoneB?.map((point,index) => (
+                                        <Circle key={index} center={point} pathOptions={{color:"gray"}} radius={30}/>
+                                    ))
+                                }
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="E - Zona afectada por replicas sismicas">
-                        <FeatureGroup pathOptions={{color:"darkgoldenrod"}}>
-                            <Popup><FaHouseDamage/> {`${zoneE.length} personas afectadas por replicas sismicas`}</Popup>
-                            {/* <Polygon positions={zoneE}></Polygon> */}
-                            {
-                            zoneE?.map((point) => (
-                                <Circle center={point} pathOptions={{color:"darkgoldenrod"}} radius={30}/>
-                            ))
-                            } 
-                        </FeatureGroup>
-                    </LayersControl.Overlay>
+                        <LayersControl.Overlay name="C - Zona afectada por interrupcion de servicios">
+                            <FeatureGroup pathOptions={{color:"blue"}}>
+                                <Popup><FaInfoCircle/> {`${zoneC?.length} personas afectadas por interrupcion de servicios`}</Popup>
+                                {/* <Polygon positions={zoneC}></Polygon> */}
+                                {
+                                zoneC?.map((point, index) => (
+                                    <Circle key={index} center={point} pathOptions={{color:"blue"}} radius={30}/>
+                                ))
+                                } 
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
 
-                    <LayersControl.Overlay name="Area radial afectada - 10km">
-                        <Circle center={[latitudMedia,longitudMedia]} pathOptions={{color:"green"}} radius={10000}/>
-                    </LayersControl.Overlay>
-                </LayersControl>
-                
-                <Polyline pathOptions={{color:"green"}} positions={polyline}/>
-                <Polygon pathOptions={{color:"yellow"}} positions={triangle}/>
-                
+                        <LayersControl.Overlay name="D - Zona afectada por derrumbe en la via">
+                            <FeatureGroup pathOptions={{color:"darkred"}}>
+                                <Popup><FaRoad/> {`${zoneD?.length} personas afectadas por derrumbe vial`}</Popup>
+                                {/* <Polygon positions={zoneD}></Polygon> */}
+                                {
+                                zoneD?.map((point,index) => (
+                                    <Circle key={index} center={point} pathOptions={{color:"darkred"}} radius={30}/>
+                                ))
+                                } 
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
 
-            </MapContainer>
+                        <LayersControl.Overlay name="E - Zona afectada por replicas sismicas">
+                            <FeatureGroup pathOptions={{color:"darkgoldenrod"}}>
+                                <Popup><FaHouseDamage/> {`${zoneE?.length} personas afectadas por replicas sismicas`}</Popup>
+                                {/* <Polygon positions={zoneE}></Polygon> */}
+                                {
+                                zoneE?.map((point, index) => (
+                                    <Circle key={index} center={point} pathOptions={{color:"darkgoldenrod"}} radius={30}/>
+                                ))
+                                } 
+                            </FeatureGroup>
+                        </LayersControl.Overlay>
+
+                        <LayersControl.Overlay name="Area radial afectada - 10km">
+                            <Circle center={[latitudMedia,longitudMedia]} pathOptions={{color:"green"}} radius={10000}/>
+                        </LayersControl.Overlay>
+                    </LayersControl>
+                    
+                    <Polyline pathOptions={{color:"green"}} positions={polyline}/>
+                    <Polygon pathOptions={{color:"yellow"}} positions={triangle}/>
+                    
+
+                </MapContainer>
+            </div> : <h1>Not data</h1>}
         </div>
     )
 }
