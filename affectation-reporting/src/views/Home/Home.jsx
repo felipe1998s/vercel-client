@@ -4,6 +4,7 @@ import { CardsContainer } from "../../components/CardsContainer/CardsContainer";
 import { getAffecteds, getAffectedsByEvents } from "../../redux/Actions/actions";
 import Loading from "../Loading/Loading";
 import style from "./Home.module.css";
+import { Footer } from "../../components";
 
 export const Home = () => {
     const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export const Home = () => {
         <div>
             {data.length>0?(<div className={style.container}>
                 <CardsContainer affecteds={affecteds}/>
+                <Footer/>
             </div>):<Loading/>}
         </div>
     )

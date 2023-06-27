@@ -34,6 +34,7 @@ export const CardsContainer = () => {
                 <FileExcelGenerator dataObject={values} listName="reportes" />
             </div>
             <hr/>
+            <div className={style.table}>
             <Card id="Id" name="Nombre" age="Edad" location="Ubicación"/>
             {!values.length==0 ? <>{values.map((value, index)=>(
                 <div key={keys[index]}>
@@ -46,6 +47,7 @@ export const CardsContainer = () => {
                     />
                 </div>
             ))}</> : <Error_404/>}
+            </div>
         </div>
     )
 }
