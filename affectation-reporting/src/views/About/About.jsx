@@ -93,7 +93,7 @@ export const About = () => {
                 </p>
             </div>
             {/* <a href="" download="app-debug.apk"> Download Here Final Doc </a>  */}
-            {/* <a href="" download="app-debug.apk"> Download Here APK </a> */}
+            <a href="https://drive.google.com/file/d/1kmEIcefx95U8T7R6nVZ2q5NfKmdIOp1h/view?usp=sharing" download="system-reporting.apk"> Download Here APK </a>
         </div>
         <Footer/>
         </div>
